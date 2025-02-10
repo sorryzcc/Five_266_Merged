@@ -1,10 +1,10 @@
 const XLSX = require('xlsx');
 
 const Mappath = `D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本关卡配置表@MapTranslationConfiguration.xlsx`;
-const Totalpath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx266.国内文本配置表@TotalTranslationConfiguration.xlsx';
-const Systempath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx266.国内文本系统配置表@SystemTranslationConfiguration.xlsx';
-const Opspath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx266.国内文本运营配置表@OpsEvenTranslationConfiguration.xlsx';
-const Battlepath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx266.国内文本战斗配置表@BattleTranslationConfiguration.xlsx';
+const Totalpath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本配置表@TotalTranslationConfiguration.xlsx';
+const Systempath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本系统配置表@SystemTranslationConfiguration.xlsx';
+const Opspath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本运营配置表@OpsEvenTranslationConfiguration.xlsx';
+const Battlepath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本战斗配置表@BattleTranslationConfiguration.xlsx';
 
 
 
@@ -31,7 +31,7 @@ const combinedData = [...MapData, ...TotalData, ...SystemData, ...OpsData, ...Ba
 
 
 
-console.log(result, 'result');
+console.log(combinedData, 'combinedData');
 
 // 将 JSON 数据转换为工作表
 const worksheet = XLSX.utils.json_to_sheet(combinedData);
