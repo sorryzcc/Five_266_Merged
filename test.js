@@ -6,14 +6,14 @@ const Systempath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/Re
 const Opspath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本运营配置表@OpsEvenTranslationConfiguration.xlsx';
 const Battlepath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本战斗配置表@BattleTranslationConfiguration.xlsx';
 
-
-
 // 读取 Excel 文件并记录文件名
 function readExcel(filePath, fileName) {
     const workbook = XLSX.readFile(filePath);
     const sheetName = workbook.SheetNames[0];
     const worksheet = workbook.Sheets[sheetName];
-    const data = XLSX.utils.sheet_to_json(worksheet).map(item => ({ ...item, "来源": fileName }));
+    
+    // 从第7行开始读取数据
+    const data = XLSX.utils.sheet_to_json(worksheet, { range: 6 }).map(item => ({ ...item, "来源": fileName }));
 
     return data;
 }
@@ -25,11 +25,8 @@ const SystemData = readExcel(Systempath, "SystemTranslationConfiguration");
 const OpsData = readExcel(Opspath, "OpsEvenTranslationConfiguration");
 const BattleData = readExcel(Battlepath, "BattleTranslationConfiguration");
 
-
 // 合并数据
 const combinedData = [...TotalData, ...MapData, ...SystemData, ...OpsData, ...BattleData];
-
-
 
 console.log(combinedData, 'combinedData');
 
