@@ -29,7 +29,6 @@ let combinedData = [...TotalData, ...MapData, ...SystemData, ...OpsData, ...Batt
 
 // 过滤掉 ID 不是数字的项
 combinedData = combinedData.filter(item => {
-    // 检查 ID 是否为数字
     if (typeof item.ID === 'number' || (!isNaN(item.ID) && !isNaN(parseFloat(item.ID)))) {
         return true;
     }
@@ -75,10 +74,11 @@ function parseToolRemark(toolRemark) {
     return { po, version, context };
 }
 
-// 遍历 combinedData，添加 po, version 和 context 字段
+// 遍历 combinedData，添加 po, version, context 和 origin 字段
 const updatedCombinedData = combinedData.map(item => {
     const { po, version, context } = parseToolRemark(item.ToolRemark || '');
-    return { ...item, po, version, context };
+    // 添加 Origin 字段，值为 Translate 字段的值
+    return { ...item, po, version, context, Origin: item.Translate ? item.Translate : '' };
 });
 
 console.log(updatedCombinedData, 'updatedCombinedData');
