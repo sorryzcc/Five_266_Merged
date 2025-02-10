@@ -1,6 +1,6 @@
 const XLSX = require('xlsx');
 
-const Mappath = '266.国内文本关卡配置表@MapTranslationConfiguration.xlsx';
+const Mappath = `D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本关卡配置表@MapTranslationConfiguration.xlsx`;
 const Totalpath = '266.国内文本配置表@TotalTranslationConfiguration.xlsx';
 const Systempath = '266.国内文本系统配置表@SystemTranslationConfiguration.xlsx';
 const Opspath = '266.国内文本运营配置表@OpsEvenTranslationConfiguration.xlsx';

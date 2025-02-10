@@ -1,1 +1,1 @@
-D:\PM_Mainland_Trunk_20230321_r552586\PMGameClient\Tables\ResXlsx
+D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx
