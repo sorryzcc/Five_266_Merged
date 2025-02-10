@@ -7,3 +7,5 @@ D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx
 ...OpsData    1500001
 ...BattleData 2000000
 
+const combinedData = [...TotalData, ...MapData, ...SystemData, ...OpsData, ...BattleData];
+
