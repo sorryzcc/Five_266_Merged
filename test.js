@@ -25,7 +25,16 @@ const OpsData = readExcel(Opspath, "OpsEvenTranslationConfiguration");
 const BattleData = readExcel(Battlepath, "BattleTranslationConfiguration");
 
 // 合并数据
-const combinedData = [...TotalData, ...MapData, ...SystemData, ...OpsData, ...BattleData];
+let combinedData = [...TotalData, ...MapData, ...SystemData, ...OpsData, ...BattleData];
+
+// 过滤掉 ID 不是数字的项
+combinedData = combinedData.filter(item => {
+    // 检查 ID 是否为数字
+    if (typeof item.ID === 'number' || (!isNaN(item.ID) && !isNaN(parseFloat(item.ID)))) {
+        return true;
+    }
+    return false;
+});
 
 // 定义一个函数来解析 ToolRemark 并返回 po, version 和 Context
 function parseToolRemark(toolRemark) {
