@@ -8,7 +8,7 @@ const Battlepath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/Re
 
 
 
-// 读取 Excel 文件并记录文件名
+// 读取 Excel 文件
 function readExcel(filePath, fileName) {
     const workbook = XLSX.readFile(filePath);
     const sheetName = workbook.SheetNames[0];
@@ -18,7 +18,7 @@ function readExcel(filePath, fileName) {
     return data;
 }
 
-// 读取5个 Excel 文件并记录文件名
+// 读取5个 Excel 文件
 const MapData = readExcel(Mappath, "MapTranslationConfiguration");
 const TotalData = readExcel(Totalpath, "TotalTranslationConfiguration");
 const SystemData = readExcel(Systempath, "SystemTranslationConfiguration");
