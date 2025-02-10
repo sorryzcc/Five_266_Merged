@@ -27,7 +27,7 @@ const BattleData = readExcel(Battlepath, "BattleTranslationConfiguration");
 // 合并数据
 const combinedData = [...TotalData, ...MapData, ...SystemData, ...OpsData, ...BattleData];
 
-// 定义一个函数来解析 ToolRemark 并返回 po 和 version
+// 定义一个函数来解析 ToolRemark 并返回 po, version 和 Context
 function parseToolRemark(toolRemark) {
     // 确保 toolRemark 是字符串
     if (typeof toolRemark !== 'string') {
@@ -37,26 +37,39 @@ function parseToolRemark(toolRemark) {
     // 正则表达式匹配场景、版本和负责人
     const match = toolRemark.match(/场景：(.*?) 使用版本：(.*?) 负责人：(.*)/);
 
+    let context, po, version;
+
     if (match && match.length >= 4) { // 匹配成功且至少有三个捕获组
-        return { po: match[3].trim(), version: match[2].trim() };
+        context = match[1].trim();
+        version = match[2].trim();
+        po = match[3].trim();
     } else {
         // 如果没有匹配到预期格式，则尝试直接获取值
-        if (toolRemark.includes('场景：') && toolRemark.includes('使用版本：') && toolRemark.includes('负责人：')) {
-            const parts = toolRemark.split('负责人：');
-            const versionPart = parts[0].split('使用版本：')[1].trim();
-            const poPart = parts[1].trim();
-            return { po: poPart, version: versionPart };
+        if (toolRemark.includes('场景：')) {
+            const parts = toolRemark.split('使用版本：');
+            context = parts[0].replace('场景：', '').trim();
+            if (parts[1] && parts[1].includes('负责人：')) {
+                version = parts[1].split('负责人：')[0].trim();
+                po = parts[1].split('负责人：')[1].trim();
+            } else {
+                version = '';
+                po = '';
+            }
+        } else {
+            // 如果不包含 场景：，则整个字段都是 Context
+            context = toolRemark.trim();
+            version = '';
+            po = '';
         }
     }
 
-    // 如果没有匹配到任何内容，默认为空字符串
-    return { po: '', version: '' };
+    return { po, version, context };
 }
 
-// 遍历 combinedData，添加 po 和 version 字段
+// 遍历 combinedData，添加 po, version 和 context 字段
 const updatedCombinedData = combinedData.map(item => {
-    const { po, version } = parseToolRemark(item.ToolRemark || '');
-    return { ...item, po, version };
+    const { po, version, context } = parseToolRemark(item.ToolRemark || '');
+    return { ...item, po, version, context };
 });
 
 console.log(updatedCombinedData, 'updatedCombinedData');
