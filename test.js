@@ -27,7 +27,7 @@ const BattleData = readExcel(Battlepath, "BattleTranslationConfiguration");
 
 
 // 合并数据
-const combinedData = [...TotalData, ...SystemData, ...OpsData, ...MapData, ...BattleData];
+const combinedData = [...TotalData, ...MapData, ...SystemData, ...OpsData, ...BattleData];
 
 
 

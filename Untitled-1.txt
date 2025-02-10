@@ -1,2 +1,9 @@
 D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx
 
+
+...TotalData, 1
+...MapData    500001
+...SystemData,1000001
+...OpsData    1500001
+...BattleData 2000000
+
