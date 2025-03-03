@@ -50,3 +50,16 @@ if (additionalKeys.length === 0) {
 } else {
     console.log(`新增的Key为：\n${additionalKeys.join('\n')}`);
 }
+
+// 根据新增的Key值从path17Data中提取对应的记录
+const newData = path17Data.filter(item => additionalKeys.includes(item.Key));
+
+// 创建新的工作簿和工作表
+const newWorkbook = XLSX.utils.book_new();
+const newWorksheet = XLSX.utils.json_to_sheet(newData);
+
+// 将工作表添加到工作簿并保存
+XLSX.utils.book_append_sheet(newWorkbook, newWorksheet, 'Sheet1');
+XLSX.writeFile(newWorkbook, './compare_10_17.xlsx');
+
+console.log(`已生成包含新增Key的Excel文件: compare_10_17.xlsx`);
