@@ -1,7 +1,7 @@
 const XLSX = require('xlsx');
 
 const path10 = './Merged_five_266.xlsx';
-const path17 = './266 0217';
+const path17 = './266 0217.xlsx';
 
 // 读取 Excel 文件
 function readExcel(filePath, fileName) {
@@ -16,3 +16,5 @@ function readExcel(filePath, fileName) {
 // 读取2个 Excel 文件
 const path10Data = readExcel(path10, "path10");
 const path17Data = readExcel(path17, "path17");
+
+console.log(path10Data,path17Data);
