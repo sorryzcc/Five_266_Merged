@@ -45,7 +45,8 @@ function findMatchingEntries(combinedData, MSData) {
                 '266文本': item.Translate,
                 'ms文本': match.Simp_TIMI,
                 '266负责人': item.ToolRemark,
-                'ms负责人': match['Simp_TIMI (Comment)']
+                'ms负责人': match['Simp_TIMI (Comment)'],
+                '266来源': item.来源  // 添加 "266来源" 字段
             };
 
             result.push(newObj);
@@ -65,7 +66,8 @@ const worksheetData = comparisonResult.map(item => ({
     '266文本': item['266文本'],
     'ms文本': item['ms文本'],
     '266负责人': item['266负责人'],
-    'ms负责人': item['ms负责人']
+    'ms负责人': item['ms负责人'],
+    '266来源': item['266来源']  // 添加到输出数据中
 }));
 const ws = XLSX.utils.json_to_sheet(worksheetData);
 
