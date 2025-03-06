@@ -1,3 +1,4 @@
+  MSData:
   {
     RelativePath: '00_NonVersion_Translation\\02_MSTag\\MSTag_MapName.mstxt',
     Label: 'MapName_AuromaPark_lowcase',
@@ -74,4 +75,13 @@
   }
 
 
-  
+combinedData:
+    {
+    ID: 95,
+    Key: 'Mainland_Vulpix_SkillEnhanceTitle8',
+    ToolRemark: '九尾',
+    Translate: '回复增强',
+    '来源': 'TotalTranslationConfiguration'
+  },
+
+  对比msdata与combinedData，找到msdata的Label与combinedData一样，但是msdata的Simp_TIMI与combinedData的Translate。然后形成新对象:key,266文本,ms文本,266负责人，ms负责人

@@ -30,4 +30,4 @@ const MSData = readExcel(MSpath, "MSpath");
 // 合并数据
 let combinedData = [...TotalData, ...MapData, ...SystemData, ...OpsData, ...BattleData];
 
-console.log(MSData,'MSData')
+console.log(combinedData,'MSData')
