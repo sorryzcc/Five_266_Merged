@@ -75,7 +75,7 @@ const ws = XLSX.utils.json_to_sheet(worksheetData);
 XLSX.utils.book_append_sheet(newWorkbook, ws, 'ComparisonResult');
 
 // 写入文件
-const outputPath = './comparison_result.xlsx'; // 输出文件路径
+const outputPath = './key_266文本_ms文本_266负责人_ms负责人_266来源.xlsx'; // 输出文件路径
 XLSX.writeFile(newWorkbook, outputPath);
 
 console.log(`对比结果已保存至 ${outputPath}`);
