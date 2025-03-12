@@ -185,7 +185,7 @@ XLSX.writeFile(newWorkbook, outputPath);
 
 console.log(`对比结果已保存至 ${outputPath}`);
 修改上面的代码
-  对比msdata与combinedData，找到msdata的Label与combinedData一样，但是msdata的Simp_TIMI与combinedData的Translate。然后形成新对象:
+  对比msdata与combinedData，找到msdata的Label与combinedData的key一样，但是msdata的Simp_TIMI与combinedData的Translate不一样的。然后形成新对象:
   Label（key）,
   Simp_TIMI,Simp_Chinese,
   Simp_TIMI (Comment),
