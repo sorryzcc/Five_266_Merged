@@ -7,7 +7,7 @@ file_paths = {
     "SystemTranslationConfiguration": 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本系统配置表@SystemTranslationConfiguration.xlsx',
     "OpsEvenTranslationConfiguration": 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本运营配置表@OpsEvenTranslationConfiguration.xlsx',
     "BattleTranslationConfiguration": 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本战斗配置表@BattleTranslationConfiguration.xlsx',
-    "MSpath": './20250312_130419.xlsm'
+    "MSpath": './筛选过后的0419表格.xlsx'
 }
 
 # 读取 Excel 文件并添加来源列
