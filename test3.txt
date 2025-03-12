@@ -191,7 +191,6 @@ console.log(`对比结果已保存至 ${outputPath}`);
   Simp_TIMI (Comment),
   ms负责人,
   266文本（combinedData的Translate）,
-  ms文本（msdata的Simp_TIMI，F列）,
   266备注(combinedDataToolRemark）)
   266负责人,
   266来源
