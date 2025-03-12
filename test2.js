@@ -85,7 +85,8 @@ const worksheetData = comparisonResult.map(item => ({
     'ms负责人': item['ms负责人'],
     '266文本': item['266文本'],
     '266备注': item['266_ToolRemark'], // 包含到输出数据中
-    '266负责人': item['266负责人']
+    '266负责人': item['266负责人'],
+    '266来源': item.来源  // 添加 "266来源" 字段
 }));
 const ws = XLSX.utils.json_to_sheet(worksheetData);
 
