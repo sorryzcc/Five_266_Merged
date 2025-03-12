@@ -19,23 +19,19 @@ function readExcel(filePath, fileName) {
 
 // 解析 ToolRemark 或 ms负责人 字段以提取负责人名字
 function parsePersonInCharge(fieldValue) {
-    // 确保 fieldValue 是字符串
     if (typeof fieldValue !== 'string') {
         fieldValue = '';
     }
-
-    // 使用正则表达式匹配场景、版本和负责人
     const match = fieldValue.match(/场景：(.*?) 使用版本：(.*?) 负责人：(.*)/);
 
-    if (match && match.length >= 4) { // 匹配成功且至少有三个捕获组
-        return match[3].trim(); // 返回负责人部分
+    if (match && match.length >= 4) {
+        return match[3].trim();
     } else {
-        // 如果没有匹配到预期格式，则尝试直接获取值
         if (fieldValue.includes('负责人：')) {
             const parts = fieldValue.split('负责人：');
             return parts[1].trim();
         } else {
-            return ''; // 如果不包含 负责人：，返回空字符串
+            return '';
         }
     }
 }
@@ -48,7 +44,6 @@ const OpsData = readExcel(Opspath, "OpsEvenTranslationConfiguration");
 const BattleData = readExcel(Battlepath, "BattleTranslationConfiguration");
 const MSData = readExcel(MSpath, "MSpath");
 
-// 合并数据
 let combinedData = [...TotalData, ...MapData, ...SystemData, ...OpsData, ...BattleData];
 
 // 对比 MSData 与 combinedData 并仅保留 Translate 与 Simp_TIMI 不同的项
@@ -56,18 +51,19 @@ function findMatchingEntries(combinedData, MSData) {
     const result = [];
 
     combinedData.forEach(item => {
-        // 寻找 MSData 中 Label 与 combinedData 中 Key 匹配的项
         const match = MSData.find(msItem => msItem.Label === item.Key);
 
-        if (match && item.Translate !== match.Simp_TIMI) { // 确保 Translate 与 Simp_TIMI 不相同
-            // 创建新对象
+        if (match && item.Translate !== match.Simp_TIMI) {
             const newObj = {
                 key: item.Key,
                 '266文本': item.Translate,
                 'ms文本': match.Simp_TIMI,
                 '266负责人': parsePersonInCharge(item.ToolRemark),
                 'ms负责人': parsePersonInCharge(match['Simp_TIMI (Comment)']),
-                '266来源': item.来源  // 添加 "266来源" 字段
+                '266来源': item.来源,
+                '266_ToolRemark': item.ToolRemark, // 添加此行
+                'MS_Simp_TIMI (Comment)': match['Simp_TIMI (Comment)'], // 添加此行
+                'MS_Simp_Chinese': match['Simp_Chinese'] // 添加此行
             };
 
             result.push(newObj);
@@ -77,18 +73,19 @@ function findMatchingEntries(combinedData, MSData) {
     return result;
 }
 
-// 使用函数处理数据
 const comparisonResult = findMatchingEntries(combinedData, MSData);
 
 // 创建新的工作簿和工作表
 const newWorkbook = XLSX.utils.book_new();
 const worksheetData = comparisonResult.map(item => ({
-    key: item.key,
-    '266文本': item['266文本'],
-    'ms文本': item['ms文本'],
-    '266负责人': item['266负责人'],
+    'Label（key）': item.key,
+    'Simp_TIMI': item['ms文本'],
+    'Simp_Chinese': item['MS_Simp_Chinese'], // 包含到输出数据中
+    'Simp_TIMI (Comment)': item['MS_Simp_TIMI (Comment)'], // 包含到输出数据中
     'ms负责人': item['ms负责人'],
-    '266来源': item['266来源']  // 添加到输出数据中
+    '266文本': item['266文本'],
+    '266备注': item['266_ToolRemark'], // 包含到输出数据中
+    '266负责人': item['266负责人']
 }));
 const ws = XLSX.utils.json_to_sheet(worksheetData);
 
