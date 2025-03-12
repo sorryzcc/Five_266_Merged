@@ -7,7 +7,7 @@ const Systempath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/Re
 const Opspath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本运营配置表@OpsEvenTranslationConfiguration.xlsx';
 const Battlepath = 'D:/PM_Mainland_Trunk_20230321_r552586/PMGameClient/Tables/ResXlsx/266.国内文本战斗配置表@BattleTranslationConfiguration.xlsx';
 
-const MSpath = './20250306_161140.xlsm';
+const MSpath = './20250312_130419.xlsm';
 
 // 读取 Excel 文件
 function readExcel(filePath, fileName) {
