@@ -60,10 +60,10 @@ function findMatchingEntries(combinedData, MSData) {
                 'ms文本': match.Simp_TIMI,
                 '266负责人': parsePersonInCharge(item.ToolRemark),
                 'ms负责人': parsePersonInCharge(match['Simp_TIMI (Comment)']),
-                '266来源': item.来源,
-                '266_ToolRemark': item.ToolRemark, // 添加此行
-                'MS_Simp_TIMI (Comment)': match['Simp_TIMI (Comment)'], // 添加此行
-                'MS_Simp_Chinese': match['Simp_Chinese'] // 添加此行
+                '266来源': item.来源, // 确保此行存在
+                '266_ToolRemark': item.ToolRemark,
+                'MS_Simp_TIMI (Comment)': match['Simp_TIMI (Comment)'],
+                'MS_Simp_Chinese': match['Simp_Chinese']
             };
 
             result.push(newObj);
@@ -80,14 +80,15 @@ const newWorkbook = XLSX.utils.book_new();
 const worksheetData = comparisonResult.map(item => ({
     'Label（key）': item.key,
     'Simp_TIMI': item['ms文本'],
-    'Simp_Chinese': item['MS_Simp_Chinese'], // 包含到输出数据中
-    'Simp_TIMI (Comment)': item['MS_Simp_TIMI (Comment)'], // 包含到输出数据中
+    'Simp_Chinese': item['MS_Simp_Chinese'],
+    'Simp_TIMI (Comment)': item['MS_Simp_TIMI (Comment)'],
     'ms负责人': item['ms负责人'],
     '266文本': item['266文本'],
-    '266备注': item['266_ToolRemark'], // 包含到输出数据中
+    '266备注': item['266_ToolRemark'],
     '266负责人': item['266负责人'],
-    '266来源': item.来源  // 添加 "266来源" 字段
+    '266来源': item['266来源'] // 添加这一行来包含'266来源'
 }));
+
 const ws = XLSX.utils.json_to_sheet(worksheetData);
 
 // 将工作表添加到工作簿中
